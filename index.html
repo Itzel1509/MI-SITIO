@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interfaz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(to right, #fcdc7e, #ffeb99);
+      color: #333;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 350px;
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .exit-button {
+      background-color: #EF6C00;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9em;
+      transition: background-color 0.3s ease;
+    }
+
+    .exit-button:hover {
+      background-color: #E65100;
+    }
+
+    .star-icon {
+      font-size: 1.5em;
+      color: #FFD700;
+      text-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .music-logo {
+      font-size: 6em;
+      color: #FF8F00;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+      font-size: 0.9em;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="password"] {
+      width: calc(100% - 20px);
+      padding: 12px 10px;
+      border: 1px solid #FFCC80;
+      border-radius: 10px;
+      font-size: 1.1em;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background-color: #FFF3E0;
+    }
+
+    .input-group input[type="text"]:focus,
+    .input-group input[type="password"]:focus {
+      border-color: #FF8F00;
+      box-shadow: 0 0 8px rgba(255, 143, 0, 0.3);
+    }
+
+    #correo {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.05em;
+      letter-spacing: 0.5px;
+    }
+
+    .input-group input::placeholder {
+      color: #BFBFBF;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    #correo::placeholder {
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    .input-group input + .underline {
+      display: block;
+      height: 3px;
+      width: 50px;
+      background-color: #ffe082;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+
+    /* Botón Siguiente */
+    .next-button {
+      background-color: #FFA000;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 15px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .next-button:hover {
+      background-color: #FB8C00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="exit-button">Exit</button>
+      <span class="star-icon">&#9733;</span>
+    </div>
+
+    <div class="music-logo">&#9835;</div>
+
+    <div class="input-group">
+      <label for="correo">Correo</label>
+      <input type="text" id="correo" placeholder="tu@ejemplo.com">
+      <span class="underline"></span>
+    </div>
+
+    <div class="input-group">
+      <label for="contrasena">Contraseña</label>
+      <input type="password" id="contrasena" placeholder="••••••••">
+      <span class="underline"></span>
+    </div>
+
+    <button class="next-button" onclick="siguiente()">Siguiente</button>
+  </div>
+
+  <script>
+    function siguiente() {
+      const correo = document.getElementById('correo').value;
+      const contrasena = document.getElementById('contrasena').value;
+
+      if (!correo || !contrasena) {
+        alert('Por favor, completa todos los campos.');
+        return;
+      }
+
+      console.log("Correo:", correo);
+      console.log("Contraseña:", contrasena);
+      alert('¡Datos enviados con éxito!');
+      // Aquí puedes redirigir si lo deseas:
+      // window.location.href = 'siguiente_pagina.html';
+    }
+  </script>
+</body>
+</html>

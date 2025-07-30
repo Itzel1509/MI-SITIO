@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musphy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            Background-color: #fcdc7e; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif; 
+        }
+
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            padding: 20px;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* --- Estilos para el menú desplegable --- */
+        .dropdown {
+            position: relative; /* Contenedor para el botón y el menú */
+            display: inline-block;
+        }
+
+        .header-menu {
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #333; /* Color del texto del botón */
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .dropdown-content {
+            display: none; /* Oculto por defecto */
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10; /* Asegura que esté por encima de otros elementos */
+            left: 0; /* Alinea el menú a la izquierda del botón */
+            border-radius: 5px;
+            overflow: hidden; /* Para que el radio de borde se aplique bien */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown-content.show {
+            display: block; /* Clase que JavaScript añadirá para mostrar el menú */
+        }
+        /* --- Fin de estilos para el menú desplegable --- */
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-image {
+            width: 250px; 
+            height: auto;
+        }
+
+       
+
+        .genres-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 900px; 
+            margin-bottom: 50px;
+        }
+
+        .genre-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+            border-radius: 10px; 
+        }
+
+        .genre-item:active {
+            transform: translateY(2px); 
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) inset; 
+        }
+
+        .genre-icon {
+            width: 150px; 
+            height: auto;
+            border: 2px solid black; 
+            padding: 10px;
+            background-color: white; 
+        }
+
+        .genre-text {
+            margin-left: 15px; 
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            
+        }
+
+        .trophy-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .trophy-icon {
+            width: 100px; 
+            height: auto;
+        }
+        /* --- Estilos para el botón de WhatsApp --- */
+        .whatsapp-float {
+            position: fixed; /* Posición fija en la pantalla */
+            bottom: 20px; /* Distancia desde abajo */
+            right: 20px; /* Distancia desde la derecha */
+            background-color: #25D366; /* Verde de WhatsApp */
+            color: white;
+            border-radius: 50%; /* Lo hace circular */
+            width: 60px; /* Ancho del botón */
+            height: 60px; /* Alto del botón */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px; /* Tamaño del ícono */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efecto 3D */
+            z-index: 100; /* Asegura que esté por encima de casi todo */
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave al pasar el mouse */
+        }
+
+        .whatsapp-float:hover {
+            background-color: #1DA851; /* Un verde ligeramente más oscuro al pasar el mouse */
+            transform: translateY(-2px); /* Pequeño levantamiento al pasar el mouse */
+        }
+        /* --- Fin de estilos para el botón de WhatsApp --- */
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="dropdown">
+            <button class="header-menu" id="optionsButton">☰ Opciones</button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#perfil">Mi Perfil</a>
+                <a href="#ajustes">Ajustes</a>
+                <a href="#ayuda">Ayuda</a>
+                <a href="#cerrar-sesion">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="logo-container">
+        <img src="musphy.jpg" alt="Musphy Logo" class="logo-image">
+    </div>
+
+    <div class="genres-grid">
+        <div class="genre-item">
+            <img src="logomus.jpg" alt="Relajante Icon" class="genre-icon">
+            <span class="genre-text">Relajante</span>
+        </div>
+        <div class="genre-item">
+            <img src="logomus.jpg" alt="Electronica Icon" class="genre-icon">
+            <span class="genre-text">Electronica</span>
+        </div>
+        <div class="genre-item">
+            <img src="logomus.jpg" alt="Clasica Icon" class="genre-icon">
+            <span class="genre-text">Clasica</span>
+        </div>
+        <div class="genre-item">
+            <img src="logomus.jpg" alt="Pop Icon" class="genre-icon">
+            <span class="genre-text">Pop</span>
+        </div>
+        <div class="genre-item">
+            <img src="logomus.jpg" alt="Naturaleza Icon" class="genre-icon">
+            <span class="genre-text">Naturaleza</span>
+        </div>
+        <div class="genre-item">
+            <img src="logomus.jpg" alt="Piano Icon" class="genre-icon">
+            <span class="genre-text">Piano</span>
+        </div>
+    </div>
+
+    <div class="trophy-container">
+        <img src="trofeo.png" alt="Trophy Icon" class="trophy-icon">
+    </div>
+
+    <a href="https://wa.me/521234567890?text=Hola,%20tengo%20una%20pregunta%20sobre%20Musphy." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const optionsButton = document.getElementById('optionsButton');
+            const myDropdown = document.getElementById('myDropdown');
+
+            // Función para alternar la visibilidad del menú
+            optionsButton.addEventListener('click', function() {
+                myDropdown.classList.toggle('show');
+            });
+
+            // Cierra el menú desplegable si se hace clic fuera de él
+            window.addEventListener('click', function(event) {
+                // Si el clic no fue en el botón del menú Y no fue dentro del menú mismo
+                if (!event.target.matches('#optionsButton') && !myDropdown.contains(event.target)) {
+                    if (myDropdown.classList.contains('show')) {
+                        myDropdown.classList.remove('show');
+                    }
+                }
+            });
+
+            // Opcional: Cierra el menú si se hace clic en una opción del menú
+            myDropdown.querySelectorAll('a').forEach(item => {
+                item.addEventListener('click', function() {
+                    if (myDropdown.classList.contains('show')) {
+                        myDropdown.classList.remove('show');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
