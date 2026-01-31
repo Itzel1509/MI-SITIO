@@ -1,0 +1,17 @@
+name: Flujo de trabajo de ejemplo escolar
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ejemplo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Mensaje de prueba
+        run: echo "GitHub Actions funcionando correctamente"
